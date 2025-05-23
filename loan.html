@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankku Loans Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="loan.css" />
+  </head>
+
+  <body>
+    <header class="header d-flex justify-content-between align-items-center">
+      <div class="logo-section">
+        <img src="img/bankku.png" alt="Bankku Logo" width="36" height="36" />
+        <h4 class="mb-0">Bankku.</h4>
+        <h2
+          class="mb-0"
+          style="
+            color: var(--primary-color);
+            padding-left: 100px;
+            font-weight: 600;
+          "
+        >
+          Loans
+        </h2>
+      </div>
+      <div class="d-flex"></div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search for something"
+          />
+          <img src="img/search.png" alt="Search" class="search-icon" />
+        </div>
+
+        <div class="header-icons">
+          <button class="icon-btn">
+            <img
+              src="img/settings_header.png"
+              alt="Settings"
+              width="20"
+              height="20"
+            />
+          </button>
+          <button class="icon-btn">
+            <img
+              src="img/notification.png"
+              alt="Notifications"
+              width="20"
+              height="20"
+            />
+          </button>
+          <img
+            src="img/avatar.png"
+            alt="User Profile"
+            class="user-avatar"
+            width="60"
+            height="60"
+          />
+        </div>
+      </div>
+    </header>
+
+    <nav class="sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html">
+            <img
+              src="img/home.png"
+              alt="Dashboard"
+              width="24"
+              height="24"
+            />
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/transaction.png"
+              alt="Transactions"
+              width="24"
+              height="24"
+            />
+            Transactions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/user.png" alt="Accounts" width="24" height="24" />
+            Accounts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/investment.png"
+              alt="Investments"
+              width="24"
+              height="24"
+            />
+            Investments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/credit-card.png"
+              alt="Credit Cards"
+              width="24"
+              height="24"
+            />
+            Credit Cards
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="loan.html">
+            <img src="img/loan_active.png" alt="Loans" width="24" height="24" />
+            Loans
+          </a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/service.png" alt="Services" width="24" height="24" />
+            Services
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/econometrics.png"
+              alt="My Privileges"
+              width="24"
+              height="24"
+            />
+            My Privileges
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="setting.html">
+            <img src="img/settings.png" alt="Settings" width="24" height="24" />
+            Setting
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main
+      class="main-content"
+      style="
+        margin-left: 250px;
+        margin-top: 101px;
+        border-radius: 25px;
+        padding: 40px;
+      "
+    >
+      <div class="d-flex menu" style="gap: 30px;">
+        <div
+          class="card mb-4 d-flex justify-content-center align-items-center"
+          style="height: 120px; width: 255px; border-radius: 25px"
+        >
+          <div class="d-flex align-items-center" style="gap: 15px">
+            <img
+              src="img/personal_loans.png"
+              alt="personal_loans"
+              style="height: 70px; width: 70px"
+            />
+            <div class="d-flex flex-column justify-content-center">
+              <p class="mb-0 text-muted" style="font-size: 16px">
+                Personal Loans
+              </p>
+              <div class="fw-bold" style="font-size: 1.25rem">$50,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card mb-4 d-flex justify-content-center align-items-center"
+          style="height: 120px; width: 255px; border-radius: 25px"
+        >
+          <div class="d-flex align-items-center" style="gap: 15px">
+            <img
+              src="img/corporate_loans.png"
+              alt="corporate_loans"
+              style="height: 70px; width: 70px"
+            />
+            <div class="d-flex flex-column justify-content-center">
+              <p class="mb-0 text-muted" style="font-size: 16px">
+                Corporate Loans
+              </p>
+              <div class="fw-bold" style="font-size: 1.25rem">$100,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card mb-4 d-flex justify-content-center align-items-center"
+          style="height: 120px; width: 255px; border-radius: 25px"
+        >
+          <div class="d-flex align-items-center" style="gap: 15px">
+            <img
+              src="img/business_loans.png"
+              alt="business_loans"
+              style="height: 70px; width: 70px"
+            />
+            <div class="d-flex flex-column justify-content-center">
+              <p class="mb-0 text-muted" style="font-size: 16px">
+                Business Loans
+              </p>
+              <div class="fw-bold" style="font-size: 1.25rem">$100,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card mb-4 d-flex justify-content-center align-items-center"
+          style="height: 120px; width: 255px; border-radius: 25px"
+        >
+          <div class="d-flex align-items-center" style="gap: 15px">
+            <img
+              src="img/custom_loans.png"
+              alt="custom_loans.png"
+              style="height: 70px; width: 70px"
+            />
+            <div class="d-flex flex-column justify-content-center">
+              <p class="mb-0 text-muted" style="font-size: 16px">
+                Custom Loans
+              </p>
+              <div class="fw-bold" style="font-size: 1.25rem">Choose Money</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="fw-bold mb-3" style="color: #333b69">Active Loans Overview</h5>
+      <div class="loans-table-container">
+        <table class="loans-table">
+          <thead>
+            <tr>
+              <th>SL No</th>
+              <th>Loan Money</th>
+              <th>Left to repay</th>
+              <th>Duration</th>
+              <th>Interest rate</th>
+              <th>Installment</th>
+              <th>Repay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="serial-number">01.</td>
+              <td class="loan-amount">$100,000</td>
+              <td class="left-amount">$40,500</td>
+              <td>8 Months</td>
+              <td>12%</td>
+              <td>$2,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">02.</td>
+              <td class="loan-amount">$500,000</td>
+              <td class="left-amount">$250,000</td>
+              <td>36 Months</td>
+              <td>10%</td>
+              <td>$8,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">03.</td>
+              <td class="loan-amount">$900,000</td>
+              <td class="left-amount">$40,500</td>
+              <td>12 Months</td>
+              <td>12%</td>
+              <td>$5,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">04.</td>
+              <td class="loan-amount">$50,000</td>
+              <td class="left-amount">$40,500</td>
+              <td>25 Months</td>
+              <td>5%</td>
+              <td>$2,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">05.</td>
+              <td class="loan-amount">$50,000</td>
+              <td class="left-amount">$40,500</td>
+              <td>5 Months</td>
+              <td>16%</td>
+              <td>$10,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">06.</td>
+              <td class="loan-amount">$80,000</td>
+              <td class="left-amount">$25,500</td>
+              <td>14 Months</td>
+              <td>8%</td>
+              <td>$2,000 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">07.</td>
+              <td class="loan-amount">$12,000</td>
+              <td class="left-amount">$5,500</td>
+              <td>9 Months</td>
+              <td>13%</td>
+              <td>$500 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="serial-number">08.</td>
+              <td class="loan-amount">$160,000</td>
+              <td class="left-amount">$100,800</td>
+              <td>3 Months</td>
+              <td>12%</td>
+              <td>$900 / month</td>
+              <td>
+                <button class="repay-btn">Repay</button>
+              </td>
+            </tr>
+            <tr class="total-row">
+              <td class="total-label">Total</td>
+              <td>$125,0000</td>
+              <td>$750,000</td>
+              <td></td>
+              <td></td>
+              <td>$50,000 / month</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>

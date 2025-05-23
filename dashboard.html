@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankku Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      :root {
+        --primary-color: #343c6a;
+        --secondary-color: #f5f7fa;
+        --accent-color: #718ebf;
+        --sidebar-width: 250px;
+        --header-height: 100px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Header Styles */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background-color: white;
+        border-bottom: 1px solid #e6e8ec;
+        z-index: 1050;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-section h4 {
+        color: var(--primary-color);
+        font-weight: 800;
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .page-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin-left: 100px;
+      }
+
+      .search-box {
+        position: relative;
+        width: 255px;
+      }
+
+      .search-input {
+        background-color: var(--secondary-color);
+        border: none;
+        border-radius: 40px;
+        padding: 15px 20px 15px 50px;
+        width: 100%;
+        font-size: 16px;
+        color: #8ba3cb;
+      }
+
+      .search-input::placeholder {
+        color: #8ba3cb;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+      }
+
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .icon-btn {
+        width: 50px;
+        height: 50px;
+        background-color: var(--secondary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .icon-btn:hover {
+        background-color: #e8ecf4;
+      }
+
+      .user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+        width: var(--sidebar-width);
+        height: calc(100vh - var(--header-height));
+        background-color: white;
+        border-right: 1px solid #e6e8ec;
+        overflow-y: auto;
+        padding-top: 20px;
+      }
+
+      .sidebar .nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar .nav-item {
+        margin-bottom: 8px;
+        position: relative;
+      }
+
+      .sidebar .nav-link {
+        color: #b1b1b1;
+        font-weight: 500;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 18px 32px;
+        transition: all 0.3s ease;
+        border-radius: 0;
+      }
+
+      .sidebar .nav-item:hover .nav-link {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+      }
+
+      .sidebar .nav-item.active .nav-link {
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+        font-weight: 600;
+      }
+
+      .sidebar .nav-item.active::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        background-color: var(--primary-color);
+        border-radius: 10px 0 0 10px;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: var(--sidebar-width);
+        padding: calc(var(--header-height) + 30px) 40px 40px;
+        min-height: 100vh;
+      }
+
+      /* Top Section - Cards */
+      .top-section {
+        display: grid;
+        grid-template-columns: 350px 350px 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      .card-balance-primary {
+        background: linear-gradient(107.38deg, #5b5fed 2.61%, #4c49ed 101.2%);
+        color: white;
+        border-radius: 25px;
+        padding: 24px;
+        width: 100%;
+        height: 235px;
+        box-shadow: 0 4px 18px 0 rgba(83, 91, 242, 0.28);
+        position: relative;
+      }
+
+      .card-balance-secondary {
+        border: 1px solid #dfeaf2;
+        background-color: white;
+        border-radius: 25px;
+        padding: 24px;
+        width: 100%;
+        height: 235px;
+      }
+
+      .card-header-section {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .see-all-link {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 17px;
+        text-decoration: none;
+        text-align: right;
+        display: block;
+        width: 100%;
+      }
+
+      .card-balance-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 33px;
+      }
+
+      .balance-amount {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 4px;
+      }
+
+      .balance-label {
+        font-size: 12px;
+        opacity: 0.7;
+        margin-bottom: 4px;
+      }
+
+      .chip-icon {
+        width: 35px;
+        height: 25px;
+      }
+
+      .card-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+
+      .card-detail-item .label {
+        font-size: 10px;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+
+      .card-detail-item .value {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .card-number-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card-number {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 2px;
+      }
+
+      .card-logo {
+        width: 44px;
+        height: 30px;
+      }
+
+      /* Recent Transactions */
+      .transactions-container {
+        background-color: white;
+        border-radius: 25px;
+        padding: 24px;
+        height: 235px;
+        overflow-y: auto;
+      }
+
+      .transaction-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .transaction-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .transaction-item:first-child {
+        padding-top: 0;
+      }
+
+      .transaction-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .transaction-icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .transaction-info h6 {
+        font-size: 16px;
+        font-weight: 500;
+        color: #232323;
+        margin: 0 0 4px 0;
+      }
+
+      .transaction-date {
+        font-size: 15px;
+        color: #718ebf;
+      }
+
+      .transaction-amount {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .amount-positive {
+        color: #16dbaa;
+      }
+
+      .amount-negative {
+        color: #fe5c73;
+      }
+
+      /* Middle Section - Charts */
+      .middle-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .chart-container {
+        background-color: white;
+        border-radius: 25px;
+        padding: 32px;
+        height: 322px;
+      }
+
+      .chart-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+      }
+
+      .chart-wrapper {
+        height: 220px;
+        position: relative;
+      }
+
+      /* Bottom Section */
+      .bottom-section {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+      }
+
+      .quick-transfer-container {
+        background-color: white;
+        border-radius: 25px;
+        padding: 32px;
+        height: 276px;
+      }
+
+      .user-profiles {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 32px;
+        position: relative;
+      }
+
+      .user-profile {
+        text-align: center;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .user-profile:hover {
+        background-color: #f8f9fa;
+      }
+
+      .user-profile.active {
+        background-color: var(--secondary-color);
+      }
+
+      .profile-avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 8px;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+      }
+
+      .profile-role {
+        font-size: 15px;
+        color: #718ebf;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 18px rgba(99, 99, 99, 0.12);
+        cursor: pointer;
+        font-size: 24px;
+        color: #718ebf;
+      }
+
+      .transfer-form {
+        margin-bottom: 32px;
+      }
+
+      .amount-label {
+        font-size: 16px;
+        color: #718ebf;
+        margin-bottom: 12px;
+      }
+
+      .amount-input {
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--primary-color);
+        width: 100%;
+        padding: 0;
+        margin-bottom: 30px;
+      }
+
+      .amount-input:focus {
+        outline: none;
+      }
+
+      .send-btn {
+        background: linear-gradient(107.38deg, #5b5fed 2.61%, #4c49ed 101.2%);
+        border: none;
+        border-radius: 50px;
+        padding: 15px 40px;
+        color: white;
+        font-weight: 500;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .send-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(83, 91, 242, 0.4);
+      }
+
+      /* Chart Legend */
+      .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 20px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .legend-color {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+      }
+
+      .legend-text {
+        font-size: 15px;
+        color: #718ebf;
+      }
+
+      /* Responsive */
+      @media (max-width: 1400px) {
+        .top-section {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .middle-section {
+          grid-template-columns: 1fr;
+        }
+
+        .bottom-section {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: calc(var(--header-height) + 20px) 20px 20px;
+        }
+
+        .search-box {
+          display: none;
+        }
+
+        .page-title {
+          margin-left: 20px;
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header d-flex justify-content-between align-items-center">
+      <div class="logo-section">
+        <img src="img/bankku.png" alt="Bankku Logo" width="36" height="36" />
+        <h4 class="mb-0">Bankku.</h4>
+        <h2
+          class="mb-0"
+          style="
+            color: var(--primary-color);
+            padding-left: 100px;
+            font-weight: 600;
+          "
+        >
+          Dashboard
+        </h2>
+      </div>
+      <div class="d-flex"></div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search for something"
+          />
+          <img src="img/search.png" alt="Search" class="search-icon" />
+        </div>
+
+        <div class="header-icons">
+          <button class="icon-btn">
+            <img
+              src="img/settings_header.png"
+              alt="Settings"
+              width="20"
+              height="20"
+            />
+          </button>
+          <button class="icon-btn">
+            <img
+              src="img/notification.png"
+              alt="Notifications"
+              width="20"
+              height="20"
+            />
+          </button>
+          <img
+            src="img/avatar.png"
+            alt="User Profile"
+            class="user-avatar"
+            width="60"
+            height="60"
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item active">
+          <a class="nav-link" href="dashboard.html">
+            <img
+              src="img/dashboard_active.png"
+              alt="Dashboard"
+              width="24"
+              height="24"
+            />
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/transaction.png"
+              alt="Transactions"
+              width="24"
+              height="24"
+            />
+            Transactions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/user.png" alt="Accounts" width="24" height="24" />
+            Accounts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/investment.png"
+              alt="Investments"
+              width="24"
+              height="24"
+            />
+            Investments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/credit-card.png"
+              alt="Credit Cards"
+              width="24"
+              height="24"
+            />
+            Credit Cards
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="loan.html">
+            <img src="img/loan.png" alt="Loans" width="24" height="24" />
+            Loans
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/service.png" alt="Services" width="24" height="24" />
+            Services
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/econometrics.png"
+              alt="My Privileges"
+              width="24"
+              height="24"
+            />
+            My Privileges
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="setting.html">
+            <img src="img/settings.png" alt="Settings" width="24" height="24" />
+            Setting
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Section - Cards and Transactions -->
+      <div class="top-section">
+        <!-- My Cards -->
+        <div>
+          <h5 class="section-title">My Cards</h5>
+          <div
+            class="card-balance-custom p-4"
+            style="background-color: #396afc; border-radius: 25px; color: white"
+          >
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <div class="small">Balance</div>
+                <h3 class="fw-semibold">$5,756</h3>
+              </div>
+              <img src="img/Chip_Card.png" alt="Chip" width="32" height="24" />
+            </div>
+
+            <div class="card-details">
+              <div class="card-detail-item">
+                <div class="label">Card Holder</div>
+                <div class="value">Eddy Cusuma</div>
+              </div>
+              <div class="card-detail-item">
+                <div class="label">Valid Thru</div>
+                <div class="value">12/22</div>
+              </div>
+            </div>
+
+            <div class="card-number-section">
+              <div class="card-number">3778 **** **** 1234</div>
+              <img src="img/circle.png" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Card -->
+        <div>
+          <div class="section-header">
+            <div class="text-end">
+              <a href="#" class="see-all-link" style="padding-bottom: 25px"
+                >See All</a
+              >
+            </div>
+          </div>
+          <div
+            class="card-balance p-4"
+            style="background-color: white; border-radius: 25px"
+          >
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <div class="small">Balance</div>
+                <h3 class="fw-semibold">$5,756</h3>
+              </div>
+              <img
+                src="img/Chip_Card_black.png"
+                alt="Chip"
+                width="32"
+                height="24"
+              />
+            </div>
+
+            <div class="d-flex justify-content-between mb-4">
+              <div>
+                <div class="small text-uppercase">Card Holder</div>
+                <div class="fw-semibold">Eddy Cusuma</div>
+              </div>
+              <div>
+                <div class="small text-uppercase">Valid Thru</div>
+                <div class="fw-semibold">12/22</div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="mb-0 fw-semibold">3778 **** **** 1234</h5>
+              <img
+                src="img/cirle_black.png"
+                alt="Card Logo"
+                width="40"
+                height="25"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div>
+          <h5
+            class="mb-3"
+            style="
+              color: var(--primary-color);
+              font-size: 22px;
+              font-weight: 700;
+            "
+          >
+            Recent Transaction
+          </h5>
+          <div
+            class="card p-4"
+            style="height: 235px; overflow-y: auto; border: none; padding: 10px"
+          >
+            <div class="transaction-item" style="gap: 10; padding-top: 0">
+              <div class="d-flex align-items-center">
+                <div class="transaction-icon" style="background-color: #fff5d9">
+                  <img
+                    src="img/deposit_card.png"
+                    alt="Card"
+                    width="28"
+                    height="28"
+                  />
+                </div>
+                <div class="transaction-details">
+                  <h6>Deposit from my Card</h6>
+                  <div class="transaction-date">28 January 2021</div>
+                </div>
+              </div>
+              <div class="transaction-amount amount-negative">-$850</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="d-flex align-items-center">
+                <div class="transaction-icon" style="background-color: #e7edff">
+                  <img
+                    src="img/deposit_paypal.png"
+                    alt="PayPal"
+                    width="24"
+                    height="24"
+                  />
+                </div>
+                <div class="transaction-details">
+                  <h6>Deposit Paypal</h6>
+                  <div class="transaction-date">25 January 2021</div>
+                </div>
+              </div>
+              <div class="transaction-amount amount-positive">+$2,500</div>
+            </div>
+
+            <div class="transaction-item" style="padding-bottom: 0">
+              <div class="d-flex align-items-center">
+                <div class="transaction-icon" style="background-color: #dcfaf8">
+                  <img
+                    src="img/jemi.png"
+                    alt="Jemi Wilson"
+                    width="40"
+                    height="40"
+                    style="border-radius: 50%"
+                  />
+                </div>
+                <div class="transaction-details">
+                  <h6>Jemi Wilson</h6>
+                  <div class="transaction-date">21 January 2021</div>
+                </div>
+              </div>
+              <div class="transaction-amount amount-positive">+$5,400</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Section - Charts -->
+      <div class="middle-section">
+        <!-- Weekly Activity Chart -->
+        <div>
+          <h5 class="chart-title">Weekly Activity</h5>
+          <div class="chart-container">
+            <div class="chart-legend">
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  style="background-color: #16dbaa"
+                ></div>
+                <span class="legend-text">Diposit</span>
+              </div>
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  style="background-color: #4c49ed"
+                ></div>
+                <span class="legend-text">Withdraw</span>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="weeklyChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expense Statistics -->
+        <div>
+          <h5 class="chart-title">Expense Statistics</h5>
+          <div class="chart-container">
+            <div
+              class="chart-wrapper"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <canvas id="expenseChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="bottom-section">
+        <!-- Quick Transfer -->
+        <div>
+          <h5 class="chart-title">Quick Transfer</h5>
+          <div>
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="card border-0"
+                style="width: 445px; border-radius: 20px"
+              >
+                <div class="card-body p-4">
+                  <!-- Contact List -->
+                  <div class="d-flex align-items-center mb-4 position-relative">
+                    <!-- Livia Bator -->
+                    <div class="text-center me-3">
+                      <div class="position-relative">
+                        <img
+                          src="img/livia.png"
+                          alt="Livia Bator"
+                          class="rounded-circle border border-3 border-white shadow-sm"
+                          style="width: 60px; height: 60px; object-fit: cover"
+                        />
+                      </div>
+                      <h6
+                        class="mb-0 mt-2 fw-bold text-dark"
+                        style="font-size: 14px; align-items: center;"
+                      >
+                        Livia Bator
+                      </h6>
+                      <small class="text-primary fw-semibold">CEO</small>
+                    </div>
+
+                    <!-- Randy Press -->
+                    <div class="text-center me-3">
+                      <div class="position-relative">
+                        <img
+                          src="img/randy.png"
+                          alt="Randy Press"
+                          class="rounded-circle border border-3 border-white shadow-sm"
+                          style="width: 60px; height: 60px; object-fit: cover"
+                        />
+                      </div>
+                      <h6
+                        class="mb-0 mt-2 fw-bold text-dark"
+                        style="font-size: 14px"
+                      >
+                        Randy Press
+                      </h6>
+                      <small class="text-muted">Director</small>
+                    </div>
+
+                    <!-- Workman -->
+                    <div class="text-center me-3">
+                      <div class="position-relative">
+                        <img
+                          src="img/workman.png"
+                          alt="Workman"
+                          class="rounded-circle border border-3 border-white shadow-sm"
+                          style="width: 60px; height: 60px; object-fit: cover"
+                        />
+                      </div>
+                      
+                      <h6
+                        class="mb-0 mt-2 fw-bold text-dark"
+                        style="font-size: 14px"
+                      >
+                        Workman
+                      </h6>
+                      <small class="text-muted">Designer</small>
+                    </div>
+
+                    <!-- Next Arrow -->
+                    <div class="text-center">
+                      <button
+                        class="btn btn-link text-primary p-0 border-0"
+                        style="font-size: 24px"
+                      >
+                        <i class="fas fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Amount Input Section -->
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <!-- Write Amount -->
+                    <div class="me-3">
+                      <label
+                        class="form-label text-muted mb-1"
+                        style="font-size: 14px"
+                        >Write Amount</label
+                      >
+                      <div
+                        class="bg-light rounded-pill px-3 py-2"
+                        style="width: 120px"
+                      >
+                        <span class="text-muted fw-medium">525.50</span>
+                      </div>
+                    </div>
+
+                    <!-- Send Button -->
+                    <div>
+                      <button
+                        class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center shadow"
+                        style="
+                          background: linear-gradient(45deg, #4c6ef5, #364fc7);
+                          border: none;
+                          font-weight: 600;
+                        "
+                      >
+                        <span class="me-2">Send</span>
+                        <i class="fas fa-paper-plane"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Balance History -->
+        <div>
+          <h5 class="chart-title">Balance History</h5>
+          <div class="chart-container">
+            <div class="chart-wrapper">
+              <canvas id="balanceChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Weekly Activity Chart
+        const weeklyCtx = document.getElementById("weeklyChart");
+        if (weeklyCtx) {
+          new Chart(weeklyCtx, {
+            type: "bar",
+            data: {
+              labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+              datasets: [
+                {
+                  label: "Deposit",
+                  data: [250, 100, 250, 400, 200, 250, 300],
+                  backgroundColor: "#4ECDC4",
+                  borderRadius: 10,
+                  barThickness: 15,
+                },
+                {
+                  label: "Withdraw",
+                  data: [500, 350, 300, 500, 150, 400, 400],
+                  backgroundColor: "#4C49ED",
+                  borderRadius: 10,
+                  barThickness: 15,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 500,
+                },
+              },
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          });
+        }
+
+        // Expense Chart
+        const expenseCtx = document.getElementById("expenseChart");
+        if (expenseCtx) {
+          new Chart(expenseCtx, {
+            type: "doughnut",
+            data: {
+              labels: ["Entertainment", "Bill Expense", "Investment", "Others"],
+              datasets: [
+                {
+                  data: [30, 15, 20, 35],
+                  backgroundColor: ["#4A5568", "#FF8C00", "#FF1493", "#4C49ED"],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          });
+        }
+
+        // Balance History Chart
+        const balanceCtx = document.getElementById("balanceChart");
+        if (balanceCtx) {
+          new Chart(balanceCtx, {
+            type: "line",
+            data: {
+              labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
+              datasets: [
+                {
+                  label: "Balance",
+                  data: [200, 400, 300, 500, 800, 300, 600],
+                  borderColor: "#4C49ED",
+                  backgroundColor: "rgba(76, 73, 237, 0.1)",
+                  fill: true,
+                  tension: 0.4,
+                  borderWidth: 3,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 800,
+                },
+              },
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            },
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

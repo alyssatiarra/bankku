@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankku Loans Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="loan.css" />
+    <style>
+        .form-check-input:checked {
+            background-color: #16DBCC;
+            border-color: #16DBCC;
+            /* width: 56px;
+            height: 30.71px; */
+        }
+
+        .form-check-input {
+            width: 56px;
+            height: 30.71px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header d-flex justify-content-between align-items-center">
+        <div class="logo-section">
+            <img src="img/bankku.png" alt="Bankku Logo" width="36" height="36" />
+            <h4 class="mb-0">Bankku.</h4>
+            <h2 class="mb-0" style="
+            color: var(--primary-color);
+            padding-left: 100px;
+            font-weight: 600;
+          ">
+                Setting
+            </h2>
+        </div>
+        <div class="d-flex"></div>
+        <div class="d-flex align-items-center gap-3">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for something" />
+                <img src="img/search.png" alt="Search" class="search-icon" />
+            </div>
+
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <img src="img/settings_header.png" alt="Settings" width="20" height="20" />
+                </button>
+                <button class="icon-btn">
+                    <img src="img/notification.png" alt="Notifications" width="20" height="20" />
+                </button>
+                <img src="img/avatar.png" alt="User Profile" class="user-avatar" width="60" height="60" />
+            </div>
+        </div>
+    </header>
+
+    <nav class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    <img src="img/home.png" alt="Dashboard" width="24" height="24" />
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/transaction.png" alt="Transactions" width="24" height="24" />
+                    Transactions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/user.png" alt="Accounts" width="24" height="24" />
+                    Accounts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/investment.png" alt="Investments" width="24" height="24" />
+                    Investments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/credit-card.png" alt="Credit Cards" width="24" height="24" />
+                    Credit Cards
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="loan.html">
+                    <img src="img/loan.png" alt="Loans" width="24" height="24" />
+                    Loans
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/service.png" alt="Services" width="24" height="24" />
+                    Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="img/econometrics.png" alt="My Privileges" width="24" height="24" />
+                    My Privileges
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <img src="img/settings_active.png" alt="Settings" width="24" height="24" />
+                    Setting
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-content" style="
+        margin-left: 250px;
+        margin-top: 101px;
+        border-radius: 25px;
+        padding: 40px;
+        width: auto;
+        height: auto;
+      ">
+        <!-- Container luar -->
+        <div class="container py-0 d-flex justify-content-center align-items-center">
+            <div class="card shadow-sm rounded-4 border-0 px-5 py-4"
+                style="border-radius: 24px; width: 1210px; height: auto">
+                <!-- Tab Navigation -->
+                <ul class="nav nav-tabs border-0 mb-4" id="profileTab" role="tablist">
+                    <li class="nav-link" role="presentation">
+                        <a class="nav-link text-muted border-0" id="pref-tab" type="button" href="setting.html">
+                            Edit Profile
+                        </a>
+                    </li>
+                    <li class="nav-link active" role="presentation">
+                        <a class="nav-link text-primary fw-semibold border-0 border-bottom border-3 border-primary rounded-0"
+                            id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab"
+                            href="setting_preference.html">
+                            Preferences
+                        </a>
+                    </li>
+                    <li class="nav-link" role="presentation">
+                        <a class="nav-link text-muted border-0" id="security-tab" type="button" href="setting_security.html">
+                            Security
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="d-flex gap-4">
+                    <div>
+                        <label class="form-label">Currency</label>
+                        <input type="text" class="form-control form-control-sm-3 bg-white border border-light-subtle"
+                            value="USD"
+                            style="border-radius: 15px; border-color: #DFEAF2; width: 510px; height: 50px; color: #718EBF;">
+                    </div>
+                    <div>
+                        <label class="form-label">Time Zone</label>
+                        <input type="text" class="form-control form-control-sm-3 bg-white border border-light-subtle"
+                            value="(GMT-12:00) International Date Line West"
+                            style="border-radius: 15px; border-color: #DFEAF2; width: 510px; height: 50px; color: #718EBF;">
+                    </div>
+                </div>
+
+                <div>
+                    <label style="padding-top: 27px; padding-bottom: 13px;">Notifications</label>
+                    <div class="form-check form-switch" id="toggle-button" style="display:flex; align-items: center;">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="width: 56px; height: 30px; margin-right: 10px;">
+                        <label class="form-check-label" for="flexSwitchCheckDefault" style="align-items: center; font-size: 16px;">I send or receive digita currency</label>
+                    </div>
+
+                    <div class="form-check form-switch" id="toggle-button" style="display:flex; align-items: center; padding-top: 15px;">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="width: 56px; height: 30px; margin-right: 10px;">
+                        <label class="form-check-label" for="flexSwitchCheckDefault" style="align-items: center; font-size: 16px;">I receive merchant order</label>
+                    </div>
+
+                    <div class="form-check form-switch" id="toggle-button" style="display:flex; align-items: center; padding-top: 15px;">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="width: 56px; height: 30px; margin-right: 10px;">
+                        <label class="form-check-label" for="flexSwitchCheckDefault" style="align-items: center; font-size: 16px;">There are recommendation for my account</label>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                  <button
+                    class="btn text-white fw-semibold px-5 py-2 rounded-3"
+                    style="background-color: #1814F3; width: 190px; height: 50px;"
+                  >
+                    Save
+                  </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>

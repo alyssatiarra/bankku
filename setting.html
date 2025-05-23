@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bankku Loans Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="loan.css" />
+  </head>
+
+  <body>
+    <header class="header d-flex justify-content-between align-items-center">
+      <div class="logo-section">
+        <img src="img/bankku.png" alt="Bankku Logo" width="36" height="36" />
+        <h4 class="mb-0">Bankku.</h4>
+        <h2
+          class="mb-0"
+          style="
+            color: var(--primary-color);
+            padding-left: 100px;
+            font-weight: 600;
+          "
+        >
+          Setting
+        </h2>
+      </div>
+      <div class="d-flex"></div>
+      <div class="d-flex align-items-center gap-3">
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search for something"
+          />
+          <img src="img/search.png" alt="Search" class="search-icon" />
+        </div>
+
+        <div class="header-icons">
+          <button class="icon-btn">
+            <img
+              src="img/settings_header.png"
+              alt="Settings"
+              width="20"
+              height="20"
+            />
+          </button>
+          <button class="icon-btn">
+            <img
+              src="img/notification.png"
+              alt="Notifications"
+              width="20"
+              height="20"
+            />
+          </button>
+          <img
+            src="img/avatar.png"
+            alt="User Profile"
+            class="user-avatar"
+            width="60"
+            height="60"
+          />
+        </div>
+      </div>
+    </header>
+
+    <nav class="sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html">
+            <img src="img/home.png" alt="Dashboard" width="24" height="24" />
+            Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/transaction.png"
+              alt="Transactions"
+              width="24"
+              height="24"
+            />
+            Transactions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/user.png" alt="Accounts" width="24" height="24" />
+            Accounts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/investment.png"
+              alt="Investments"
+              width="24"
+              height="24"
+            />
+            Investments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/credit-card.png"
+              alt="Credit Cards"
+              width="24"
+              height="24"
+            />
+            Credit Cards
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="loan.html">
+            <img src="img/loan.png" alt="Loans" width="24" height="24" />
+            Loans
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img src="img/service.png" alt="Services" width="24" height="24" />
+            Services
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <img
+              src="img/econometrics.png"
+              alt="My Privileges"
+              width="24"
+              height="24"
+            />
+            My Privileges
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link">
+            <img
+              src="img/settings_active.png"
+              alt="Settings"
+              width="24"
+              height="24"
+            />
+            Setting
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div
+      class="main-content"
+      style="
+        margin-left: 250px;
+        margin-top: 101px;
+        border-radius: 25px;
+        padding: 40px;
+        width: auto;
+        height: auto;
+      "
+    >
+      <!-- Container luar -->
+      <div
+        class="container py-0 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="card shadow-sm rounded-4 border-0 px-5 py-4"
+          style="border-radius: 24px; width: 1210px; height: auto"
+        >
+          <!-- Tab Navigation -->
+          <ul class="nav nav-tabs border-0 mb-4" id="profileTab" role="tablist">
+            <li class="nav-link" role="presentation">
+              <a
+                class="nav-link active text-primary fw-semibold border-0 border-bottom border-3 border-primary rounded-0"
+                id="edit-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#edit"
+                type="button"
+                role="tab"
+              >
+                Edit Profile
+              </a>
+            </li>
+            <li class="nav-link" role="presentation">
+              <a
+                class="nav-link text-muted border-0"
+                id="pref-tab"
+                type="button"
+                href="setting_preference.html"
+              >
+                Preferences
+              </a>
+            </li>
+            <li class="nav-link" role="presentation">
+              <a
+                class="nav-link text-muted border-0"
+                id="security-tab"
+                type="button"
+                href="setting_security.html"
+              >
+                Security
+              </a>
+            </li>
+          </ul>
+
+          <!-- Content -->
+          <div class="row">
+            <div class="col-md-2 d-flex justify-content-center">
+              <div class="avatar-wrapper position-relative d-inline-block">
+                <img
+                  src="img/avatar.png"
+                  alt="User Avatar"
+                  class="rounded-circle avatar-img"
+                  height="130px"
+                />
+                <button
+                  class="btn btn-primary p-1 rounded-circle position-absolute edit-icon"
+                  style="height: 30px; width: 30px"
+                >
+                  <i class="bi bi-pencil-fill text-white"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="col-md-10">
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Your Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="Charlene Reed"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">User Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="Charlene Reed"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="charlenereed@gmail.com"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="********"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Date of Birth</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="25 January 1990"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Present Address</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="San Jose, California, USA"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Permanent Address</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="San Jose, California, USA"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="San Jose"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Postal Code</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="45962"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Country</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-sm rounded-3 bg-white border border-light-subtle"
+                      value="USA"
+                      style="color: #718ebf"
+                    />
+                  </div>
+                </div>
+
+                <!-- Tombol Save -->
+                <div class="d-flex justify-content-end mt-4">
+                  <button
+                    class="btn text-white fw-semibold px-5 py-2 rounded-3"
+                    style="
+                      background-color: #1814f3;
+                      width: 190px;
+                      height: 50px;
+                    "
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
