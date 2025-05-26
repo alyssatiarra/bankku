@@ -183,19 +183,21 @@
         border-radius: 10px 0 0 10px;
       }
 
-      /* Main Content */
+      /* Main Content - Updated */
       .main-content {
         margin-left: var(--sidebar-width);
         padding: calc(var(--header-height) + 30px) 40px 40px;
         min-height: 100vh;
+        width: calc(100vw - var(--sidebar-width));
       }
 
-      /* Top Section - Cards */
+      /* Top Section - Updated to fill width */
       .top-section {
         display: grid;
-        grid-template-columns: 350px 350px 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 30px;
         margin-bottom: 30px;
+        width: 100%;
       }
 
       .section-title {
@@ -309,6 +311,7 @@
         padding: 24px;
         height: 235px;
         overflow-y: auto;
+        width: 100%;
       }
 
       .transaction-item {
@@ -368,12 +371,13 @@
         color: #fe5c73;
       }
 
-      /* Middle Section - Charts */
+      /* Middle Section - Updated to fill width */
       .middle-section {
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 30px;
         margin-bottom: 30px;
+        width: 100%;
       }
 
       .chart-container {
@@ -381,6 +385,7 @@
         border-radius: 25px;
         padding: 32px;
         height: 322px;
+        width: 100%;
       }
 
       .chart-title {
@@ -393,13 +398,15 @@
       .chart-wrapper {
         height: 220px;
         position: relative;
+        width: 100%;
       }
 
-      /* Bottom Section */
+      /* Bottom Section - Updated to fill width */
       .bottom-section {
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 30px;
+        width: 100%;
       }
 
       .quick-transfer-container {
@@ -407,6 +414,7 @@
         border-radius: 25px;
         padding: 32px;
         height: 276px;
+        width: 100%;
       }
 
       .user-profiles {
@@ -542,19 +550,38 @@
         color: #718ebf;
       }
 
-      /* Responsive */
+      /* Additional utility classes for better spacing */
+      .section-container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .quick-transfer-card {
+        width: 100%;
+        max-width: none;
+        border-radius: 20px;
+      }
+
+      /* Responsive Updates */
       @media (max-width: 1400px) {
         .top-section {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
           gap: 20px;
         }
-
+        
         .middle-section {
           grid-template-columns: 1fr;
         }
 
         .bottom-section {
           grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .top-section {
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
       }
 
@@ -566,6 +593,7 @@
         .main-content {
           margin-left: 0;
           padding: calc(var(--header-height) + 20px) 20px 20px;
+          width: 100vw;
         }
 
         .search-box {
@@ -575,6 +603,13 @@
         .page-title {
           margin-left: 20px;
           font-size: 1.5rem;
+        }
+        
+        .top-section,
+        .middle-section,
+        .bottom-section {
+          grid-template-columns: 1fr;
+          gap: 15px;
         }
       }
     </style>
@@ -723,7 +758,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <!-- Top Section - Cards and Transactions -->
+      <!-- Top Section - Cards and Transactions --> 
       <div class="top-section">
         <!-- My Cards -->
         <div>
@@ -932,119 +967,110 @@
         <!-- Quick Transfer -->
         <div>
           <h5 class="chart-title">Quick Transfer</h5>
-          <div>
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <div
-                class="card border-0"
-                style="width: 445px; border-radius: 20px"
-              >
-                <div class="card-body p-4">
-                  <!-- Contact List -->
-                  <div class="d-flex align-items-center mb-4 position-relative">
-                    <!-- Livia Bator -->
-                    <div class="text-center me-3">
-                      <div class="position-relative">
-                        <img
-                          src="img/livia.png"
-                          alt="Livia Bator"
-                          class="rounded-circle border border-3 border-white shadow-sm"
-                          style="width: 60px; height: 60px; object-fit: cover"
-                        />
-                      </div>
-                      <h6
-                        class="mb-0 mt-2 fw-bold text-dark"
-                        style="font-size: 14px; align-items: center;"
-                      >
-                        Livia Bator
-                      </h6>
-                      <small class="text-primary fw-semibold">CEO</small>
+          <div class="quick-transfer-container">
+            <div class="card border-0 quick-transfer-card">
+              <div class="card-body p-4">
+                <!-- Contact List -->
+                <div class="d-flex align-items-center mb-4 position-relative">
+                  <!-- Livia Bator -->
+                  <div class="text-center me-3">
+                    <div class="position-relative">
+                      <img
+                        src="img/livia.png"
+                        alt="Livia Bator"
+                        class="rounded-circle border border-3 border-white shadow-sm"
+                        style="width: 60px; height: 60px; object-fit: cover"
+                      />
                     </div>
+                    <h6
+                      class="mb-0 mt-2 fw-bold text-dark"
+                      style="font-size: 14px; align-items: center;"
+                    >
+                      Livia Bator
+                    </h6>
+                    <small class="text-primary fw-semibold">CEO</small>
+                  </div>
 
-                    <!-- Randy Press -->
-                    <div class="text-center me-3">
-                      <div class="position-relative">
-                        <img
-                          src="img/randy.png"
-                          alt="Randy Press"
-                          class="rounded-circle border border-3 border-white shadow-sm"
-                          style="width: 60px; height: 60px; object-fit: cover"
-                        />
-                      </div>
-                      <h6
-                        class="mb-0 mt-2 fw-bold text-dark"
-                        style="font-size: 14px"
-                      >
-                        Randy Press
-                      </h6>
-                      <small class="text-muted">Director</small>
+                  <!-- Randy Press -->
+                  <div class="text-center me-3">
+                    <div class="position-relative">
+                      <img
+                        src="img/randy.png"
+                        alt="Randy Press"
+                        class="rounded-circle border border-3 border-white shadow-sm"
+                        style="width: 60px; height: 60px; object-fit: cover"
+                      />
                     </div>
+                    <h6
+                      class="mb-0 mt-2 fw-bold text-dark"
+                      style="font-size: 14px"
+                    >
+                      Randy Press
+                    </h6>
+                    <small class="text-muted">Director</small>
+                  </div>
 
-                    <!-- Workman -->
-                    <div class="text-center me-3">
-                      <div class="position-relative">
-                        <img
-                          src="img/workman.png"
-                          alt="Workman"
-                          class="rounded-circle border border-3 border-white shadow-sm"
-                          style="width: 60px; height: 60px; object-fit: cover"
-                        />
-                      </div>
-                      
-                      <h6
-                        class="mb-0 mt-2 fw-bold text-dark"
-                        style="font-size: 14px"
-                      >
-                        Workman
-                      </h6>
-                      <small class="text-muted">Designer</small>
+                  <!-- Workman -->
+                  <div class="text-center me-3">
+                    <div class="position-relative">
+                      <img
+                        src="img/workman.png"
+                        alt="Workman"
+                        class="rounded-circle border border-3 border-white shadow-sm"
+                        style="width: 60px; height: 60px; object-fit: cover"
+                      />
                     </div>
+                    
+                    <h6
+                      class="mb-0 mt-2 fw-bold text-dark"
+                      style="font-size: 14px"
+                    >
+                      Workman
+                    </h6>
+                    <small class="text-muted">Designer</small>
+                  </div>
 
-                    <!-- Next Arrow -->
-                    <div class="text-center">
-                      <button
-                        class="btn btn-link text-primary p-0 border-0"
-                        style="font-size: 24px"
-                      >
-                        <i class="fas fa-chevron-right"></i>
-                      </button>
+                  <!-- Next Arrow -->
+                  <div class="text-center ms-auto">
+                    <button
+                      class="btn btn-link text-primary p-0 border-0"
+                      style="font-size: 24px"
+                    >
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Amount Input Section -->
+                <div class="d-flex align-items-center justify-content-between">
+                  <!-- Write Amount -->
+                  <div class="me-3">
+                    <label
+                      class="form-label text-muted mb-1"
+                      style="font-size: 14px"
+                      >Write Amount</label
+                    >
+                    <div
+                      class="bg-light rounded-pill px-3 py-2"
+                      style="min-width: 120px"
+                    >
+                      <span class="text-muted fw-medium">525.50</span>
                     </div>
                   </div>
 
-                  <!-- Amount Input Section -->
-                  <div
-                    class="d-flex align-items-center justify-content-between"
-                  >
-                    <!-- Write Amount -->
-                    <div class="me-3">
-                      <label
-                        class="form-label text-muted mb-1"
-                        style="font-size: 14px"
-                        >Write Amount</label
-                      >
-                      <div
-                        class="bg-light rounded-pill px-3 py-2"
-                        style="width: 120px"
-                      >
-                        <span class="text-muted fw-medium">525.50</span>
-                      </div>
-                    </div>
-
-                    <!-- Send Button -->
-                    <div>
-                      <button
-                        class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center shadow"
-                        style="
-                          background: linear-gradient(45deg, #4c6ef5, #364fc7);
-                          border: none;
-                          font-weight: 600;
-                        "
-                      >
-                        <span class="me-2">Send</span>
-                        <i class="fas fa-paper-plane"></i>
-                      </button>
-                    </div>
+                  <!-- Send Button -->
+                  <div>
+                    <button
+                      class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center shadow"
+                      style="
+                        background: linear-gradient(45deg, #4c6ef5, #364fc7);
+                        border: none;
+                        font-weight: 600;
+                      "
+                    >
+                      <span class="me-2">Send</span>
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
                   </div>
                 </div>
               </div>
